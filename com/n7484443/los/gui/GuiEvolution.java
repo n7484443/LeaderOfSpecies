@@ -8,6 +8,7 @@ import org.newdawn.slick.Color;
 
 import com.n7484443.los.develop.EvolutionS;
 import com.n7484443.los.render.FontRenderer;
+import com.n7484443.los.render.RenderThread;
 import com.n7484443.los.render.RenderingHelper;
 import com.n7484443.los.render.TextureHelper;
 
@@ -22,19 +23,19 @@ public class GuiEvolution extends GuiBase {
 	}
 
 	public void init() {
-		int a = 158;
+		int a = (RenderThread.DisplayWidth-2)/6;
 		nowPage = 0;
 		Page = new ButtonPage[6];
 		for(int i = 0; i < Page.length; i++){
 			Page[i] = new ButtonPage();
 		}
 		up = new ButtonPage();
-		up.Buttons.add(new ButtonBase(x + 3, y + 3, a, 50, gui, 0, false, "개요", 0));
-		up.Buttons.add(new ButtonBase(x + 3 + 1 + a, y + 3, a, 50, gui, 1, false, "돌연변이", 0));
-		up.Buttons.add(new ButtonBase(x + 3 + 2 + a * 2, y + 3, a, 50, gui, 2, false, "생명력", 0));
-		up.Buttons.add(new ButtonBase(x + 3 + 3 + a * 3, y + 3, a, 50, gui, 3, false, "번식력", 0));
-		up.Buttons.add(new ButtonBase(x + 3 + 4 + a * 4, y + 3, a, 50, gui, 4, false, "유전 방식", 0));
-		up.Buttons.add(new ButtonBase(x + 3 + 5 + a * 5, y + 3, a, 50, gui, 5, false, "진화 방향", 0));
+		up.Buttons.add(new ButtonBase(x + 1, y + 3, a, 50, gui, 0, false, "개요", 0));
+		up.Buttons.add(new ButtonBase(x + 1 + 1 + a, y + 3, a, 50, gui, 1, false, "돌연변이", 0));
+		up.Buttons.add(new ButtonBase(x + 1 + 2 + a * 2, y + 3, a, 50, gui, 2, false, "생명력", 0));
+		up.Buttons.add(new ButtonBase(x + 1 + 3 + a * 3, y + 3, a, 50, gui, 3, false, "번식력", 0));
+		up.Buttons.add(new ButtonBase(x + 1 + 4 + a * 4, y + 3, a, 50, gui, 4, false, "유전 방식", 0));
+		up.Buttons.add(new ButtonBase(x + 1 + 5 + a * 5, y + 3, a, 50, gui, 5, false, "진화 방향", 0));
 		Page[1].Buttons.add(new ButtonBase(x + 3, y + height / 2 - a / 2, a, 50, gui, 0, true, "핵막 생성", 2));
 		up.Buttons.get(0).onoff = true;
 	}

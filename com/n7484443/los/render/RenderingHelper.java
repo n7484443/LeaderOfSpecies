@@ -122,6 +122,10 @@ public class RenderingHelper {
 	public static void RenderText(int x, int y, String str, boolean t) {
 		FontRenderer.render(x, y, str, t);
 	}
+	
+	public static void RenderText(int x, int y, String str, int size, float alpha, boolean t) {
+		FontRenderer.renderReSizeable(x, y, size, str, alpha, t);
+	}
 
 	public static void SetColor(int r, int g, int b, int alpha) {
 		if (alpha == -1) {

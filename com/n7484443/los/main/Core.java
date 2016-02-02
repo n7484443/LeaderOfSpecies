@@ -27,8 +27,7 @@ public class Core extends Thread{
 	public static void main(String[] args) {
 		instance = new Core();
 		instance.start();
-	}
-	
+	}   
 	public void run(){
 		setPriority(Thread.NORM_PRIORITY+2);
 		guis = new GuiS();

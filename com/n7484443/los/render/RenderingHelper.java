@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.*;
 
 public class RenderingHelper {
+	
 	public static void RenderCircle(int x1, int y1, int c, int size, int border) {
 		glBegin(GL_LINE_LOOP);
 		for (int i = 0; i <= c; i++) {

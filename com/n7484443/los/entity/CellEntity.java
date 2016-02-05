@@ -10,6 +10,7 @@ import com.n7484443.los.develop.EvolutionS;
 import com.n7484443.los.map.MapBase;
 import com.n7484443.los.map.MapS;
 import com.n7484443.los.map.MapUnderSea;
+import com.n7484443.los.render.ColorS;
 import com.n7484443.los.render.FontRenderer;
 import com.n7484443.los.render.RenderingHelper;
 import com.n7484443.los.render.TextureHelper;
@@ -43,7 +44,9 @@ public class CellEntity extends EntityBase{
 	}
 
 	public void RenderingEntity(){
-		Color.white.bind();
+		ColorS.AquaBlue.bind();
+		SetBlendMode(false);
+		RenderingHelper.RenderPackedCircle((int)x, (int)y, width/2);
 		SetBlendMode(true);
 		RenderingHelper.RenderQuadangleXY((int)x, (int)y, width, height, TextureHelper.EntityTexture[EvolutionS.EntityCellImageEvolution()]);
 		Color.black.bind();

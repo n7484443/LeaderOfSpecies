@@ -87,8 +87,7 @@ public class GuiEvolution extends GuiBase {
 					}
 				}
 			}
-			RenderQuadangleXY(button.x, button.y, button.width, button.height, null);
-			RenderText(button.x + button.width/2 - FontRenderer.getSize(button.getString())/2, button.y, button.getString());
+			button.RenderButton();
 		}
 		for (ButtonBase button : getButtonPage().Buttons) {
 			if (button != null)
@@ -105,8 +104,7 @@ public class GuiEvolution extends GuiBase {
 						Color.darkGray.bind();
 					}
 				}
-			RenderQuadangleXY(button.x, button.y, button.width, button.height, null);
-			RenderText(button.x + button.width/2 - FontRenderer.getSize(button.getString())/2, button.y, button.getString());
+			button.RenderButton();
 		}
 	}
 

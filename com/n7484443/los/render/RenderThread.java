@@ -22,7 +22,7 @@ public class RenderThread extends Thread {
 	long firsttime;
 	long fpslimit = 1000 / 60;
 	int loop;
-	public static final int DisplayWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().width) / 2;
+	public static final int DisplayWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().width)/2;
 	public static final int DisplayHeight = (int)(DisplayWidth * 9/16);
 
 	public void run() {
@@ -101,7 +101,7 @@ public class RenderThread extends Thread {
 			Display.setTitle("window");
 			Display.setFullscreen(true);
 			Display.setResizable(true);
-			Display.create();	
+			Display.create(new PixelFormat(32, 0, 24, 0, 16));	
 
 			glMatrixMode(GL_PROJECTION);
 			glLoadIdentity();

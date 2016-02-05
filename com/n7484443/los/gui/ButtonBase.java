@@ -1,6 +1,10 @@
 package com.n7484443.los.gui;
 
+import static com.n7484443.los.render.RenderingHelper.RenderQuadangleXY;
+import static com.n7484443.los.render.RenderingHelper.RenderText;
+
 import com.n7484443.los.input.ButtonInput;
+import com.n7484443.los.render.FontRenderer;
 
 public class ButtonBase {
 	public int x;
@@ -52,6 +56,21 @@ public class ButtonBase {
 			return off;
 		}
 	}
+	
+	public boolean isRender(){
+		return false;
+	}
+	
+	public void Render(){
+		RenderQuadangleXY(x, y, width, height, null);
+		RenderText(x + width/2 - FontRenderer.getSize(getString())/2, y, getString());
+	}
+	public void RenderButton(){
+		if(isRender()){
+			Render();
+		}
+	}
+	
 	
 	public boolean CheckMouseIn(int mousex, int mousey){
 		if(mousex > x  && mousey > y && mousex < x + width && mousey < y+height){

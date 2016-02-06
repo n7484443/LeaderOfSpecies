@@ -14,6 +14,7 @@ public class FontRenderer {
 	public static BufferedReader br;
 	public static int koreanheight;
 	public static int line;
+	public static final int baseSize = 20;
 	public static Map<Integer, Integer> x = new HashMap<Integer, Integer>();
 	public static Map<Integer, Integer> y = new HashMap<Integer, Integer>();
 	public static Map<Integer, Integer> width = new HashMap<Integer, Integer>();
@@ -85,8 +86,9 @@ public class FontRenderer {
 		GL11.glDisable(GL11.GL_BLEND);
 	}
 	
-	public static int getSize(String str){
+	public static int getXSize(String str, int sizeX){
 		int size = 0;
+		float m = (float)sizeX / 20;
 		boolean b = false;
 		boolean isfirst = false;
 		for(int i = 0; i < str.length(); i++){
@@ -109,7 +111,11 @@ public class FontRenderer {
 				b= false;
 			}
 		}
-		return size;
+		return (int) (size*m);
+	}
+	
+	public static int getYSize(int size){
+		return (int) (koreanheight*((float)size / 20));
 	}
 	
 	public static void renderReSizeable(int x1, int y1, int size, String str, float Alpha, boolean whiteorblack){

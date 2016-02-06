@@ -15,11 +15,11 @@ public class ButtonBase {
 	public int num;
 	public boolean state;
 	public boolean onoff;
-	public String on;
-	public String off;
+	public String[] str;
 	public boolean oneTime;
 	public int page;
-	public ButtonBase(int x, int y, int width, int height, int gui, int num, boolean oneTime, String off, String on, int page) {
+	public int size;
+	public ButtonBase(int x, int y, int width, int height, int gui, int num, String[] onoff, int page) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -27,14 +27,14 @@ public class ButtonBase {
 		this.gui = gui;
 		this.num = num;
 		this.state = false;
-		this.on = on;
-		this.off = off;
+		this.str = onoff;
 		this.onoff = false;
-		this.oneTime = oneTime;
+		this.oneTime = false;
 		this.page = page;
+		this.size = FontRenderer.baseSize;
 	}
 	
-	public ButtonBase(int x, int y, int width, int height, int gui, int num, boolean oneTime, String off, int page) {
+	public ButtonBase(int x, int y, int width, int height, int gui, int num, String off, int page) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -42,18 +42,29 @@ public class ButtonBase {
 		this.gui = gui;
 		this.num = num;
 		this.state = false;
-		this.off = off;
-		this.on = null;
+		this.str = new String[1];
+		this.str[0] = off;
 		this.onoff = false;
-		this.oneTime = oneTime;
+		this.oneTime = false;
 		this.page = page;
+		this.size = FontRenderer.baseSize;
+	}
+	
+	public ButtonBase setOneTimeClick(){
+		this.oneTime = true;
+		return this;
+	}
+	
+	public ButtonBase setFontSize(int size){
+		this.size = size;
+		return this;
 	}
 	
 	public String getString(){
-		if(on != null){
-			return onoff ? on: off;
+		if(str.length != 1){
+			return onoff ? str[1]: str[0];
 		}else{
-			return off;
+			return str[0];
 		}
 	}
 	
@@ -63,7 +74,7 @@ public class ButtonBase {
 	
 	public void Render(){
 		RenderQuadangleXY(x, y, width, height, null);
-		RenderText(x + width/2 - FontRenderer.getSize(getString())/2, y, getString());
+		RenderText(x + width/2 - FontRenderer.getXSize(getString(), size)/2, y + height/2 - FontRenderer.getYSize(size)/2, getString());
 	}
 	public void RenderButton(){
 		if(isRender()){

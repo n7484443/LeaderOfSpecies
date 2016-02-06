@@ -1,7 +1,6 @@
 package com.n7484443.los.entity;
 
-import static com.n7484443.los.render.RenderingHelper.RenderText;
-import static com.n7484443.los.render.RenderingHelper.SetBlendMode;
+import static com.n7484443.los.render.RenderingHelper.*;
 
 import java.util.Random;
 
@@ -29,11 +28,11 @@ public class CellEntity extends EntityBase{
 	
 	public void update(){
 		if(time != 0 && time % eattime == 0){
-			if(((MapUnderSea)map).F > eat){
-				((MapUnderSea)map).F -= eat;
+			if(MapUnderSea.F > eat){
+				MapUnderSea.F -= eat;
 			}else{
 				this.EntityDelete();
-				((MapUnderSea)this.map).F += eat;
+				MapUnderSea.F += eat;
 			}
 		}
 		if(time != 0 && time % maxReproduction == 0){
@@ -44,12 +43,8 @@ public class CellEntity extends EntityBase{
 	}
 
 	public void RenderingEntity(){
-		ColorS.AquaBlue.bind();
-		SetBlendMode(false);
-		RenderingHelper.RenderPackedCircle((int)x, (int)y, width/2);
 		SetBlendMode(true);
 		RenderingHelper.RenderQuadangleXY((int)x, (int)y, width, height, TextureHelper.EntityTexture[EvolutionS.EntityCellImageEvolution()]);
 		Color.black.bind();
-		RenderText((int)(x + width/2 - FontRenderer.getSize(String.valueOf(eat))/2), (int)y, String.valueOf(eat), false);
 	}
 }

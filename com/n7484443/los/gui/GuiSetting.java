@@ -6,7 +6,10 @@ import static com.n7484443.los.render.RenderingHelper.RenderText;
 import org.newdawn.slick.Color;
 
 import com.n7484443.los.develop.EvolutionS;
+import com.n7484443.los.main.Core;
 import com.n7484443.los.render.FontRenderer;
+import com.n7484443.los.render.RenderThread;
+import com.n7484443.los.savedata.SaveDataThread;
 
 public class GuiSetting extends GuiBase{
 
@@ -14,13 +17,16 @@ public class GuiSetting extends GuiBase{
 	public ButtonPage Menu;
 	public LabbelPage[] labbel;
 	public int nowPage;
+	public int Buttonnum;
 	
 	public GuiSetting(int x, int y, int width, int height, int gui) {
 		super(x, y, width, height, gui, gui, false);
+		Buttonnum = 6;
 	}
 
 	public void init() {
-		int a = 158;
+		int a = (RenderThread.DisplayWidth)/(Buttonnum+1);
+		int space = a/(Buttonnum+1);
 		nowPage = 0;
 		Page = new ButtonPage[6];
 		for(int i = 0; i < Page.length; i++){
@@ -31,15 +37,16 @@ public class GuiSetting extends GuiBase{
 			labbel[i] = new LabbelPage();
 		}
 		Menu = new ButtonPage();
-		Menu.Buttons.add(new ButtonBase(x + 3, y + 3, a, 50, gui, 0, false, "돌아가기", 0));
-		Menu.Buttons.add(new ButtonBase(x + 3 + 1 + a, y + 3, a, 50, gui, 1, false, "그래픽 설정", 0));
-		Menu.Buttons.add(new ButtonBase(x + 3 + 2 + a * 2, y + 3, a, 50, gui, 2, false, "사운드 설정", 0));
-		Menu.Buttons.add(new ButtonBase(x + 3 + 3 + a * 3, y + 3, a, 50, gui, 3, false, "키 설정", 0));
-		Menu.Buttons.add(new ButtonBase(x + 3 + 4 + a * 4, y + 3, a, 50, gui, 4, false, "게임 저장", 0));
-		Menu.Buttons.add(new ButtonBase(x + 3 + 5 + a * 5, y + 3, a, 50, gui, 5, false, "메뉴", 0));
+		Menu.Buttons.add(new ButtonBase(x + space, y + space, a, 50, gui, 0, "돌아가기", 0));
+		Menu.Buttons.add(new ButtonBase(x + space*2 + a, y + space, a, 50, gui, 1, "그래픽 설정", 0));
+		Menu.Buttons.add(new ButtonBase(x + space*3 + a * 2, y + space, a, 50, gui, 2, "사운드 설정", 0));
+		Menu.Buttons.add(new ButtonBase(x + space*4 + a * 3, y + space, a, 50, gui, 3, "키 설정", 0));
+		Menu.Buttons.add(new ButtonBase(x + space*5 + a * 4, y + space, a, 50, gui, 4, "게임 저장", 0));
+		Menu.Buttons.add(new ButtonBase(x + space*6 + a * 5, y + space, a, 50, gui, 5, "메뉴", 0));
 		//Page[1].Buttons.add(new ButtonBase(x + 3, y + height / 2 - a / 2, a, 50, gui, 0, false, "창 크기 변경", 2));
 		
 		labbel[1].Labbels.add(new LabbelBase(x + 3, y + height / 2 - a / 2, a, 50, "창 크기 변경"));
+		Page[1].Buttons.add(new ButtonScroll(x + 3 + space *2 + a, y + height / 2 - a / 2, a, 50, gui, 0, new String[]{"창 크기 변경", "창 크기"}, 1));
 	}
 
 	public ButtonPage getButtonPage() {
@@ -59,6 +66,11 @@ public class GuiSetting extends GuiBase{
 		case 0: 
 			if (num == 0){
 				GuiS.reverseGui(gui);
+				Menu.Buttons.get(1).onoff = false;
+				Menu.Buttons.get(2).onoff = false;
+				Menu.Buttons.get(3).onoff = false;
+				Menu.Buttons.get(4).onoff = false;
+				Menu.Buttons.get(5).onoff = false;
 			}else if (num < 6) {
 				Menu.Buttons.get(1).onoff = false;
 				Menu.Buttons.get(2).onoff = false;
@@ -75,11 +87,17 @@ public class GuiSetting extends GuiBase{
 				EvolutionS.Evolutioned(0);
 			}
 			break;
+		
+		case 4:
+			SaveDataThread sdt = new SaveDataThread();
+			sdt = new SaveDataThread();
+			sdt.run();
+			break;
 		}
 	}
 
 	public void BeforeRender() {
-		Color.black.bind();
+		Color.lightGray.bind();
 		RenderQuadangleXY(x, y, width, height, null);
 		for (ButtonBase button : Menu.Buttons) {
 			if (button != null){
@@ -97,8 +115,7 @@ public class GuiSetting extends GuiBase{
 					}
 				}
 			}
-			RenderQuadangleXY(button.x, button.y, button.width, button.height, null);
-			RenderText(button.x + button.width/2 - FontRenderer.getSize(button.getString())/2, button.y, button.getString());
+			button.Render();
 		}
 		for (ButtonBase button : getButtonPage().Buttons) {
 			if (button != null)
@@ -115,15 +132,13 @@ public class GuiSetting extends GuiBase{
 						Color.darkGray.bind();
 					}
 				}
-			RenderQuadangleXY(button.x, button.y, button.width, button.height, null);
-			RenderText(button.x + button.width/2 - FontRenderer.getSize(button.getString())/2, button.y, button.getString());
+			button.Render();
 		}
 		
 		for (LabbelBase labbel : getLabbelPage().Labbels) {
 			if (labbel != null){
-				Color.black.bind();
-				RenderQuadangleXY(labbel.x, labbel.y, labbel.width, labbel.height, null);
-				RenderText(labbel.x + labbel.width/2 - FontRenderer.getSize(labbel.getLabel())/2, labbel.y, labbel.getLabel());
+				Color.lightGray.bind();
+				labbel.Render();
 			}
 		}
 	}

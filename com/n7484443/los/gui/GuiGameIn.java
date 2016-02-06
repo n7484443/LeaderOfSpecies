@@ -3,8 +3,6 @@ package com.n7484443.los.gui;
 import static com.n7484443.los.render.RenderingHelper.RenderQuadangleXY;
 
 import org.newdawn.slick.Color;
-
-import com.n7484443.los.map.MapS;
 import com.n7484443.los.map.MapUnderSea;
 import com.n7484443.los.render.RenderingHelper;
 
@@ -24,6 +22,6 @@ public class GuiGameIn extends GuiBase{
 	public void AfterRender(){
 		Color.black.bind();
 		RenderQuadangleXY(10, 10, 200, 30, null);
-		RenderingHelper.RenderText(10, 10, String.valueOf(((MapUnderSea)MapS.map[0]).F));
+		RenderingHelper.RenderText(10, 10, String.valueOf(MapUnderSea.F));
 	}
 }

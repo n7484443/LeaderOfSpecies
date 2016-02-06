@@ -3,15 +3,25 @@ package com.n7484443.los.gui;
 import static com.n7484443.los.render.RenderingHelper.RenderQuadangleXY;
 import static com.n7484443.los.render.RenderingHelper.RenderText;
 
+import org.newdawn.slick.Color;
+
 import com.n7484443.los.render.FontRenderer;
 
 public class ButtonScroll extends ButtonBase{
 	public String[] option;
 	public int choose;
-	public ButtonScroll(int x, int y, int width, int height, int gui, int num, boolean oneTime, String[] option, int page) {
-		super(x, y, width, height, gui, num, oneTime, option[0], page);
+	public int shownum;//show
+	public int show;
+	public ButtonScroll(int x, int y, int width, int height, int gui, int num, String[] option, int page) {
+		super(x, y, width, height, gui, num, option, page);
 		this.option = option;
 		choose = 0;
+		if(option.length < 7){
+			shownum = option.length;
+		}else{
+			shownum = 7;
+		}
+		show = 0;
 	}
 
 	public String getString(){
@@ -22,14 +32,24 @@ public class ButtonScroll extends ButtonBase{
 		return true;
 	}
 	public void Render(){
-		if(option.length % 2 == 0){
-			
+		if(show % 2 == 0){
+			if(show + shownum > option.length){
+				show = option.length - shownum;
+			}
+			for(int i = 0; i <shownum; i++){
+				Color.gray.bind();
+				RenderQuadangleXY(x, y-(i-shownum/2)*height, width, height, null);
+				RenderText(x, y-(i-shownum/2)*height, option[i+show]);
+			}
 		}else{
-			
-		}
-		for(int i = 0; i < option.length; i++){
-			RenderQuadangleXY(x, y, width, height, null);
-			RenderText(x + width/2 - FontRenderer.getSize(option[i])/2, y, getString());
+			if(show + shownum > option.length){
+				show = option.length - shownum;
+			}
+			for(int i = 0; i <show; i++){
+				Color.gray.bind();
+				RenderQuadangleXY(x, y-(show-(shownum+1)/2)*height, width, height, null);
+				RenderText(x, y-(show-(shownum+1)/2)*height, option[i+show]);
+			}
 		}
 	}
 	

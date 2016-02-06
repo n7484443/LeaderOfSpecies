@@ -1,16 +1,11 @@
 package com.n7484443.los.gui;
 
-import static com.n7484443.los.render.RenderingHelper.RenderQuadangleXY;
-import static com.n7484443.los.render.RenderingHelper.RenderText;
-import static com.n7484443.los.render.RenderingHelper.SetBlendMode;
+import static com.n7484443.los.render.RenderingHelper.*;
 
 import org.newdawn.slick.Color;
 
-import com.n7484443.los.develop.EvolutionS;
-import com.n7484443.los.render.FontRenderer;
-import com.n7484443.los.render.RenderThread;
-import com.n7484443.los.render.RenderingHelper;
-import com.n7484443.los.render.TextureHelper;
+import com.n7484443.los.develop.*;
+import com.n7484443.los.render.*;
 
 public class GuiEvolution extends GuiBase {
 
@@ -30,13 +25,13 @@ public class GuiEvolution extends GuiBase {
 			Page[i] = new ButtonPage();
 		}
 		up = new ButtonPage();
-		up.Buttons.add(new ButtonBase(x + 1, y + 3, a, 50, gui, 0, false, "개요", 0));
-		up.Buttons.add(new ButtonBase(x + 1 + 1 + a, y + 3, a, 50, gui, 1, false, "돌연변이", 0));
-		up.Buttons.add(new ButtonBase(x + 1 + 2 + a * 2, y + 3, a, 50, gui, 2, false, "생명력", 0));
-		up.Buttons.add(new ButtonBase(x + 1 + 3 + a * 3, y + 3, a, 50, gui, 3, false, "번식력", 0));
-		up.Buttons.add(new ButtonBase(x + 1 + 4 + a * 4, y + 3, a, 50, gui, 4, false, "유전 방식", 0));
-		up.Buttons.add(new ButtonBase(x + 1 + 5 + a * 5, y + 3, a, 50, gui, 5, false, "진화 방향", 0));
-		Page[1].Buttons.add(new ButtonBase(x + 3, y + height / 2 - a / 2, a, 50, gui, 0, true, "핵막 생성", 2));
+		up.Buttons.add(new ButtonBase(x + 1, y + 3, a, 50, gui, 0, "개요", 0));
+		up.Buttons.add(new ButtonBase(x + 1 + 1 + a, y + 3, a, 50, gui, 1, "돌연변이", 0));
+		up.Buttons.add(new ButtonBase(x + 1 + 2 + a * 2, y + 3, a, 50, gui, 2, "생명력", 0));
+		up.Buttons.add(new ButtonBase(x + 1 + 3 + a * 3, y + 3, a, 50, gui, 3, "번식력", 0));
+		up.Buttons.add(new ButtonBase(x + 1 + 4 + a * 4, y + 3, a, 50, gui, 4, "유전 방식", 0));
+		up.Buttons.add(new ButtonBase(x + 1 + 5 + a * 5, y + 3, a, 50, gui, 5, "진화 방향", 0));
+		Page[1].Buttons.add(new ButtonBase(x + 3, y + height / 2 - a / 2, a, 50, gui, 0, "핵막 생성", 2).setOneTimeClick());
 		up.Buttons.get(0).onoff = true;
 	}
 

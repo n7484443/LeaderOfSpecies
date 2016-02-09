@@ -9,6 +9,7 @@ import com.n7484443.los.develop.EvolutionS;
 import com.n7484443.los.main.Core;
 import com.n7484443.los.render.FontRenderer;
 import com.n7484443.los.render.RenderThread;
+import com.n7484443.los.render.RenderingHelper;
 import com.n7484443.los.savedata.SaveDataThread;
 
 public class GuiSetting extends GuiBase{

@@ -1,13 +1,67 @@
 package com.n7484443.los.render;
 
 import static org.lwjgl.opengl.GL11.*;
+import static com.n7484443.los.math.MathS.*;
 
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.*;
 
 public class RenderingHelper {
+	public static void RenderLine(int x1, int y1, int x2, int y2) {
+		glBegin(GL_LINE_STRIP);
+		glVertex2i(x1, y1);
+		glVertex2i(x2, y2);
+		glEnd();
+	}
+	
+	public static void RenderLine(double x1, double y1, double x2, double y2) {
+		glBegin(GL_LINE_STRIP);
+		glVertex2d(x1, y1);
+		glVertex2d(x2, y2);
+		glEnd();
+	}
+	
+	public static void RenderLine(float x1, float y1, float x2, float y2) {
+		glBegin(GL_LINE_STRIP);
+		glVertex2f(x1, y1);
+		glVertex2f(x2, y2);
+		glEnd();
+	}
+	
+	public static void RenderHexagon(float x1, float y1, float size) {
+		glBegin(GL_LINE_LOOP);
+		glVertex2f(x1, y1);
+		glVertex2f(x1+size, y1+size*sqrt3);
+		glVertex2f(x1+size*(1+sqrt3), y1+size*sqrt3);
+		glVertex2f(x1+size*(2+sqrt3), y1);
+		glVertex2f(x1+size*(1+sqrt3), y1-size*sqrt3);
+		glVertex2f(x1+size, y1-size*sqrt3);
+		glEnd();
+	}
+	
+	public static void RenderPackedHexagon(float x1, float y1, float size) {
+		glBegin(GL_TRIANGLE_FAN);
+		glVertex2f(x1, y1);
+		glVertex2f(x1+size, y1+size*sqrt3);
+		glVertex2f(x1+size*(1+sqrt3), y1+size*sqrt3);
+		glVertex2f(x1+size*(2+sqrt3), y1);
+		glVertex2f(x1+size*(1+sqrt3), y1-size*sqrt3);
+		glVertex2f(x1+size, y1-size*sqrt3);
+		glEnd();
+	}
 	
 	public static void RenderCircle(int x1, int y1, int c, int size, int border) {
+		glBegin(GL_LINE_LOOP);
+		for (int i = 0; i <= c; i++) {
+			double angle = Math.PI * 2 * i / c;
+			double x = Math.cos(angle);
+			double y = Math.sin(angle);
+			glVertex2d(x1 + x * size, y1 + y * size);
+		}
+		glEnd();
+	}
+	
+	public static void RenderCircle(float x1, float y1, int c, int size, int border) {
 		glBegin(GL_LINE_LOOP);
 		for (int i = 0; i <= c; i++) {
 			double angle = Math.PI * 2 * i / c;

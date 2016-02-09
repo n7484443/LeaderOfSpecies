@@ -104,7 +104,7 @@ public class RenderThread extends Thread {
 			DisplayMode DisplayModes = Display.getDesktopDisplayMode();
 			System.out.println(DisplayModes);
 			DisplayMode disp = DisplayModes;
-			Display.create(new PixelFormat(32, 0, 24, 0, 16));
+			Display.create(new PixelFormat(32, 0, 24, 0, 2));
 			Display.setFullscreen(true);
 			Display.setResizable(true);
 			Display.setTitle("LeaderOfSpecies");

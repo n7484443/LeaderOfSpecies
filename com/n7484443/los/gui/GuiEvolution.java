@@ -66,6 +66,8 @@ public class GuiEvolution extends GuiBase {
 	}
 
 	public void BeforeRender() {
+
+		SetBlendMode(false);
 		for (ButtonBase button : up.Buttons) {
 			if (button != null){
 				if (!button.onoff) {
@@ -104,6 +106,11 @@ public class GuiEvolution extends GuiBase {
 	}
 
 	public void AfterRender() {
+		SetBlendMode(false);
+		Color.black.bind();
+		for (int i = 0; i < 20; i++){
+			RenderPackedHexagon(200+i, 200+i, 20);
+		}
 		Color.black.bind();
 		RenderingHelper.RenderPackedCircle(x + width - 64 - 20, y + 128 + 64, 90);
 		Color.white.bind();
@@ -115,5 +122,6 @@ public class GuiEvolution extends GuiBase {
 				TextureHelper.EntityTexture[EvolutionS.EntityCellImageEvolution()]);
 		RenderingHelper.RenderQuadangleXY(x + width - 128 - 20, y + 128, 128, 128,
 				TextureHelper.EntityTexture[EvolutionS.EntityCellImageEvolution()]);
+		
 	}
 }

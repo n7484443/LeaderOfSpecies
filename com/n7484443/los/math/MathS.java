@@ -4,6 +4,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 public class MathS {
 	public static double G = 6.673*0.01;
+	public static float sqrt3 = 1.73f;
 	
 	public static Vector2f CircuitGravity(double m1, double m2, float x1, float y1, float x2, float y2){
 		float F = (float) (G * m1 * m2 / Math.pow(CircuitRange(x1, y1, x2, y2), 2));

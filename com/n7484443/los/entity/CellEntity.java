@@ -5,7 +5,8 @@ import static com.n7484443.los.render.RenderingHelper.*;
 import java.util.Random;
 
 import org.newdawn.slick.Color;
-import com.n7484443.los.develop.EvolutionS;
+
+import com.n7484443.los.evolution.EvolutionS;
 import com.n7484443.los.map.MapBase;
 import com.n7484443.los.map.MapS;
 import com.n7484443.los.map.MapUnderSea;

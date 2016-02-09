@@ -3,7 +3,7 @@ package com.n7484443.los.main;
 import org.lwjgl.opengl.*;
 
 import com.n7484443.los.circuit.CircuitThread;
-import com.n7484443.los.develop.EvolutionS;
+import com.n7484443.los.evolution.EvolutionS;
 import com.n7484443.los.gui.GuiS;
 import com.n7484443.los.input.InputThread;
 import com.n7484443.los.map.MapS;
@@ -30,9 +30,9 @@ public class Core extends Thread{
 	}   
 	public void run(){
 		setPriority(Thread.NORM_PRIORITY+2);
+		evolutions = new EvolutionS();
 		guis = new GuiS();
 		maps = new MapS();
-		evolutions = new EvolutionS();
 		ThreadInit();
 		while(Loop){
 			if(Display.isCreated() && Display.isCloseRequested()){

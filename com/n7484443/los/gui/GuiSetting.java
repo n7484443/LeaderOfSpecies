@@ -5,7 +5,7 @@ import static com.n7484443.los.render.RenderingHelper.RenderText;
 
 import org.newdawn.slick.Color;
 
-import com.n7484443.los.develop.EvolutionS;
+import com.n7484443.los.evolution.EvolutionS;
 import com.n7484443.los.main.Core;
 import com.n7484443.los.render.FontRenderer;
 import com.n7484443.los.render.RenderThread;

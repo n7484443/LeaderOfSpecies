@@ -69,7 +69,7 @@ public class ButtonBase {
 	}
 	
 	public boolean isRender(){
-		return false;
+		return true;
 	}
 	
 	public void Render(){

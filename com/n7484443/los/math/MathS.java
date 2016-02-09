@@ -45,4 +45,11 @@ public class MathS {
 		//System.out.println(angle + ":" + F);
 		return new Vector2f(angle, F);
 	}
+	
+	public static float AngleToPublic(float theta){
+		if(90-theta < 0){
+			return 450-theta;
+		}
+		return 90 - theta;
+	}
 }

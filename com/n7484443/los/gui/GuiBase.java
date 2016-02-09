@@ -1,5 +1,8 @@
 package com.n7484443.los.gui;
 
+import static com.n7484443.los.render.RenderingHelper.RenderQuadangleXY;
+
+import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.*;
 
 import com.n7484443.los.render.*;
@@ -68,6 +71,10 @@ public class GuiBase{
 		return this.visible;
 	}
 	
+	public void GuiRender(){
+		Color.white.bind();
+		RenderQuadangleXY(x, y, width, height, getTexture());
+	}
 	public void BeforeRender(){}
 	public void AfterRender(){}
 	public void DoSomething(){}

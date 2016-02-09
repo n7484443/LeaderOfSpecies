@@ -32,9 +32,9 @@ public class RenderingHelper {
 		glBegin(GL_LINE_LOOP);
 		glVertex2f(x1, y1);
 		glVertex2f(x1+size, y1+size*sqrt3);
-		glVertex2f(x1+size*(1+sqrt3), y1+size*sqrt3);
-		glVertex2f(x1+size*(2+sqrt3), y1);
-		glVertex2f(x1+size*(1+sqrt3), y1-size*sqrt3);
+		glVertex2f(x1+size*3, y1+size*sqrt3);
+		glVertex2f(x1+size*4, y1);
+		glVertex2f(x1+size*3, y1-size*sqrt3);
 		glVertex2f(x1+size, y1-size*sqrt3);
 		glEnd();
 	}
@@ -43,9 +43,33 @@ public class RenderingHelper {
 		glBegin(GL_TRIANGLE_FAN);
 		glVertex2f(x1, y1);
 		glVertex2f(x1+size, y1+size*sqrt3);
-		glVertex2f(x1+size*(1+sqrt3), y1+size*sqrt3);
-		glVertex2f(x1+size*(2+sqrt3), y1);
-		glVertex2f(x1+size*(1+sqrt3), y1-size*sqrt3);
+		glVertex2f(x1+size*3, y1+size*sqrt3);
+		glVertex2f(x1+size*4, y1);
+		glVertex2f(x1+size*3, y1-size*sqrt3);
+		glVertex2f(x1+size, y1-size*sqrt3);
+		glEnd();
+	}
+	
+	public static void RenderHexagonWithCenter(float x1, float y1, float size) {
+		x1 -= size*sqrt3/2 + size;
+		glBegin(GL_LINE_LOOP);
+		glVertex2f(x1, y1);
+		glVertex2f(x1+size, y1+size*sqrt3);
+		glVertex2f(x1+size*3, y1+size*sqrt3);
+		glVertex2f(x1+size*4, y1);
+		glVertex2f(x1+size*3, y1-size*sqrt3);
+		glVertex2f(x1+size, y1-size*sqrt3);
+		glEnd();
+	}
+	
+	public static void RenderPackedHexagonWithCenter(float x1, float y1, float size) {
+		x1 -= size*sqrt3/2 + size;
+		glBegin(GL_TRIANGLE_FAN);
+		glVertex2f(x1, y1);
+		glVertex2f(x1+size, y1+size*sqrt3);
+		glVertex2f(x1+size*3, y1+size*sqrt3);
+		glVertex2f(x1+size*4, y1);
+		glVertex2f(x1+size*3, y1-size*sqrt3);
 		glVertex2f(x1+size, y1-size*sqrt3);
 		glEnd();
 	}

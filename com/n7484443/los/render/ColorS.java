@@ -4,7 +4,8 @@ import org.newdawn.slick.Color;
 
 public enum ColorS {
 	AquaBlue(126, 210, 255),
-	GlassGreen(173, 255, 166);
+	GlassGreen(173, 255, 166),
+	SkyBlue(198, 255, 255);
 	
 	Color color;
 	ColorS(int r, int g, int b){

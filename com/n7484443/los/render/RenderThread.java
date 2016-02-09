@@ -88,8 +88,7 @@ public class RenderThread extends Thread {
 		for (int i = 0; i < GuiS.guis.length; i++) {
 			GuiBase gui = GuiS.getGui(i);
 			if (gui.getVisible()) {
-				Color.white.bind();
-				RenderQuadangleXY(gui.getX(), gui.getY(), gui.getWidth(), gui.getHeight(), gui.getTexture());
+				gui.GuiRender();
 				gui.BeforeRender();
 				if (gui.entityAble) {
 					RenderEntity(i);

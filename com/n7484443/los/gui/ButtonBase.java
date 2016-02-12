@@ -7,8 +7,8 @@ import com.n7484443.los.input.ButtonInput;
 import com.n7484443.los.render.FontRenderer;
 
 public class ButtonBase {
-	public int x;
-	public int y;
+	public float x;
+	public float y;
 	public int width;
 	public int height;
 	public int gui;
@@ -35,6 +35,21 @@ public class ButtonBase {
 	}
 	
 	public ButtonBase(int x, int y, int width, int height, int gui, int num, String off, int page) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.gui = gui;
+		this.num = num;
+		this.state = false;
+		this.str = new String[1];
+		this.str[0] = off;
+		this.onoff = false;
+		this.oneTime = false;
+		this.page = page;
+		this.size = FontRenderer.baseSize;
+	}
+	public ButtonBase(float x, float y, int width, int height, int gui, int num, String off, int page) {
 		this.x = x;
 		this.y = y;
 		this.width = width;

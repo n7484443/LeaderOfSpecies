@@ -118,7 +118,7 @@ public class RenderingHelper {
 		glEnd();
 	}
 
-	public static void RenderQuadrangle(int x, int y, int xsize, int ysize, Texture texture) {
+	public static void RenderQuadangle(int x, int y, int xsize, int ysize, Texture texture) {
 		if (texture == null) {
 			glDisable(GL_TEXTURE_2D);
 			glBegin(GL_QUADS);
@@ -144,6 +144,31 @@ public class RenderingHelper {
 	}
 
 	public static void RenderQuadangleXY(int x, int y, int xsize, int ysize, Texture texture) {
+		if (texture == null) {
+			glDisable(GL_TEXTURE_2D);
+			glBegin(GL_QUADS);
+			glVertex2d(x, y);
+			glVertex2d(x + xsize, y);
+			glVertex2d(x + xsize, y + ysize);
+			glVertex2d(x, y + ysize);
+			glEnd();
+		} else {
+			glEnable(GL_TEXTURE_2D);
+			texture.bind();
+			glBegin(GL_QUADS);
+			glTexCoord2f(0, 0);
+			glVertex2d(x, y);
+			glTexCoord2f(texture.getWidth(), 0);
+			glVertex2d(x + xsize, y);
+			glTexCoord2f(texture.getWidth(), texture.getHeight());
+			glVertex2d(x + xsize, y + ysize);
+			glTexCoord2f(0, texture.getHeight());
+			glVertex2d(x, y + ysize);
+			glEnd();
+		}
+	}
+	
+	public static void RenderQuadangleXY(float x, float y, int xsize, int ysize, Texture texture) {
 		if (texture == null) {
 			glDisable(GL_TEXTURE_2D);
 			glBegin(GL_QUADS);
@@ -198,11 +223,24 @@ public class RenderingHelper {
 		FontRenderer.render(x, y, str, true);
 	}
 	
+	public static void RenderText(float x, float y, String str) {
+		FontRenderer.render(x, y, str, true);
+	}
+	
 	public static void RenderText(int x, int y, String str, boolean t) {
 		FontRenderer.render(x, y, str, t);
 	}
 	
+	public static void RenderText(int x, int y, String str, int size, boolean t) {
+		FontRenderer.renderReSizeable(x, y, size, str, t);
+	}
+	
 	public static void RenderText(int x, int y, String str, int size, float alpha, boolean t) {
+		FontRenderer.renderReSizeable(x, y, size, str, alpha, t);
+	}
+	
+	
+	public static void RenderText(float x, float y, String str, int size, float alpha, boolean t) {
 		FontRenderer.renderReSizeable(x, y, size, str, alpha, t);
 	}
 
@@ -212,6 +250,10 @@ public class RenderingHelper {
 		} else {
 			glColor4f(r, g, b, alpha);
 		}
+	}
+	
+	public static void SetLineBorder(float f){
+		glLineWidth(f);
 	}
 
 	public static void SetBlendMode(boolean b) {

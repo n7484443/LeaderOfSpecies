@@ -1,8 +1,5 @@
 package com.n7484443.los.circuit;
 
-
-import java.util.Random;
-
 import com.n7484443.los.entity.*;
 import com.n7484443.los.main.*;
 import com.n7484443.los.map.*;

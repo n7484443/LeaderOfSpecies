@@ -1,12 +1,14 @@
 package com.n7484443.los.gui;
 
 import static com.n7484443.los.render.RenderingHelper.*;
+
+import org.newdawn.slick.Color;
+
 import com.n7484443.los.math.MathS;
 import com.n7484443.los.render.FontRenderer;
 
 public class ButtonHexagon extends ButtonBase{
-	
-	public ButtonHexagon(int x, int y, int size, int gui, int num, String off, int page) {
+	public ButtonHexagon(float x, float y, int size, int gui, int num, String off, int page) {
 		super(x, y, size, size, gui, num, off, page);
 		this.size = 12;
 	}
@@ -38,9 +40,8 @@ public class ButtonHexagon extends ButtonBase{
 	}
 	
 	public void Render(){
-		System.out.println(size);
 		RenderPackedHexagonWithCenter(x, y, width);
-		RenderText(x - FontRenderer.getXSize(getString(), size)/2 +2, y - FontRenderer.getYSize(size)/2, getString(), size, 1.0f, false);
 	}
+	
 	
 }

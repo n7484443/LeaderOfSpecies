@@ -27,6 +27,10 @@ public class MouseInputEvent {
 		ButtonUpdate();
 	}
 	public static void CheckClick(){
+		int dWheel = Mouse.getDWheel();
+	    if (dWheel != 0) {
+	    	ScrollEvent(dWheel, Mouse.getX(), Display.getHeight() - Mouse.getY());
+	    }
 		while (Mouse.next()) {
 			if (Mouse.isInsideWindow()) {
 				if(Mouse.getEventButton() >= 0){
@@ -36,10 +40,15 @@ public class MouseInputEvent {
 		}
 		for(int i = 0; i < button.length; i++){
 			button[i].UpdateMove(Mouse.getDX(), Mouse.getDY());
-			button[i].HoldingEvent(Mouse.getX(), Display.getHeight() -Mouse.getY());
-			button[i].DragingEvent(Mouse.getX(), Display.getHeight() -Mouse.getY());
+			button[i].HoldingEvent(Mouse.getX(), Display.getHeight() - Mouse.getY());
+			button[i].DragingEvent(Mouse.getX(), Display.getHeight() - Mouse.getY());
 		}
 	}
+	
+	public static void ScrollEvent(int Dwheel, int mousex, int mousey){
+		
+	}
+	
 	public static void ButtonUpdate(){
 		for(int i = 0; i < GuiS.guis.length; i++){
 			GuiBase gui = GuiS.getGui(i);

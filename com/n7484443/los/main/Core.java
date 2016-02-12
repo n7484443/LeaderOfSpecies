@@ -6,10 +6,12 @@ import com.n7484443.los.circuit.CircuitThread;
 import com.n7484443.los.evolution.EvolutionS;
 import com.n7484443.los.gui.GuiS;
 import com.n7484443.los.input.InputThread;
+import com.n7484443.los.language.LanguageStringLoader;
 import com.n7484443.los.map.MapS;
 import com.n7484443.los.render.*;
 
 public class Core extends Thread{
+	public static String version;
 	//public static boolean CircuitEnd = false;
 	public static boolean RenderEnd = false;
 	public static boolean DiplayCreated = false;
@@ -29,6 +31,7 @@ public class Core extends Thread{
 		instance.start();
 	}   
 	public void run(){
+		LanguageStringLoader.init();
 		setPriority(Thread.NORM_PRIORITY+2);
 		evolutions = new EvolutionS();
 		guis = new GuiS();

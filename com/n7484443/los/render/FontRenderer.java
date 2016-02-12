@@ -21,9 +21,9 @@ public class FontRenderer {
 	
 	
 	public static void init() throws IOException{
-		kor_white = TextureLoader.getTexture("png", ResourceLoader.getResourceAsStream("com/n7484443/los/font/korean_white.png"));
-		kor_black = TextureLoader.getTexture("png", ResourceLoader.getResourceAsStream("com/n7484443/los/font/korean_black.png"));
-		br = new BufferedReader(new InputStreamReader(ResourceLoader.getResourceAsStream("com/n7484443/los/font/korean.fnt")));
+		kor_white = TextureLoader.getTexture("png", new FileInputStream(new File("c:/LeaderOfSpecies/korean_white.png")));
+		kor_black = TextureLoader.getTexture("png", new FileInputStream(new File("c:/LeaderOfSpecies/korean_black.png")));
+		br = new BufferedReader(new InputStreamReader(new FileInputStream(new File("c:/LeaderOfSpecies/korean.fnt"))));
 		String str;
 		boolean b = true;
 		while((str = br.readLine()) != null){
@@ -44,7 +44,7 @@ public class FontRenderer {
 		br.close();
 	}
 	
-	public static void render(int x1, int y1, String str, boolean whiteorblack){
+	public static void render(float x1, float y1, String str, boolean whiteorblack){
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		Color.white.bind();
@@ -77,7 +77,7 @@ public class FontRenderer {
 			float texx2 = (fontx+fontwidth)/2048F;
 			float texy1 = fonty/2048F;
 			float texy2 = (fonty+koreanheight)/2048F;
-			RenderingHelper.RenderQuadangleXY(x1, y1, fontwidth, koreanheight, whiteorblack ? kor_white : kor_black, texx1, texy1, texx2, texy2);
+			RenderingHelper.RenderQuadangleXY((int)x1, (int)y1, fontwidth, koreanheight, whiteorblack ? kor_white : kor_black, texx1, texy1, texx2, texy2);
 			x1 += fontwidth;
 			if(b){
 				b= false;
@@ -118,7 +118,7 @@ public class FontRenderer {
 		return (int) (koreanheight*((float)size / 20));
 	}
 	
-	public static void renderReSizeable(int x1, int y1, int size, String str, float Alpha, boolean whiteorblack){
+	public static void renderReSizeable(int x1, int y1, int size, String str, boolean whiteorblack){
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		float m = (float)size / 20;
@@ -132,6 +132,25 @@ public class FontRenderer {
 			float texy2 = (fonty+koreanheight)/2048F;
 			int he = (int) (koreanheight*m);
 			RenderingHelper.RenderQuadangleXY(x1, y1, (int)(fontwidth*m), (int)(he), whiteorblack ? kor_white : kor_black, texx1, texy1, texx2, texy2);
+			x1 += fontwidth*m;
+		}
+		GL11.glDisable(GL11.GL_BLEND);
+	}
+	
+	public static void renderReSizeable(float x1, float y1, int size, String str, float Alpha, boolean whiteorblack){
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		float m = (float)size / 20;
+		for(int i = 0; i < str.length(); i++){
+			int fontx = x.get((int)str.charAt(i));
+			int fonty = y.get((int)str.charAt(i));
+			int fontwidth = width.get((int)str.charAt(i));
+			float texx1 = fontx/2048F;
+			float texx2 = (fontx+fontwidth)/2048F;
+			float texy1 = fonty/2048F;
+			float texy2 = (fonty+koreanheight)/2048F;
+			int he = (int) (koreanheight*m);
+			RenderingHelper.RenderQuadangleXY((int)x1, (int)y1, (int)(fontwidth*m), (int)(he), whiteorblack ? kor_white : kor_black, texx1, texy1, texx2, texy2);
 			x1 += fontwidth*m;
 		}
 		GL11.glDisable(GL11.GL_BLEND);

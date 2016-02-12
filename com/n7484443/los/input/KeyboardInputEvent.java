@@ -21,7 +21,7 @@ public class KeyboardInputEvent {
 		
 	}
 	public static void PressedEvent(int key){
-		if(!GuiS.isGuiVisible(2) && key == Keyboard.KEY_E){
+		if(!GuiS.isGuiVisible(3) &&!GuiS.isGuiVisible(2) && key == Keyboard.KEY_E){
 			GuiS.reverseGui(0);
 			GuiS.reverseGui(1);
 		}
